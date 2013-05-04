@@ -62,7 +62,7 @@ class TodoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		return Response::json(['success' => 'update', 'id' => $id]);
 	}
 
 	/**
@@ -73,7 +73,8 @@ class TodoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+
+		return Response::json(['success' => 'delete', 'id' => $id, 'checked' => Input::get('checked')]);
 	}
 
 }
