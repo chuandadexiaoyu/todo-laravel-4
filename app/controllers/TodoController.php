@@ -9,7 +9,7 @@ class TodoController extends BaseController {
 	}
 
 	/**
-	 * Return a JSON with all todos for the current user
+	 * Returns a file that contains all todos for the current user
 	 *
 	 * @return Response JSON
 	 */
@@ -21,7 +21,7 @@ class TodoController extends BaseController {
 	/**
 	 * Create a new empty todo
 	 *
-	 * @return Response
+	 * @return Response JSON
 	 */
 	public function create()
 	{
@@ -32,10 +32,10 @@ class TodoController extends BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified todo.
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @return Response JSON
 	 */
 	public function update($id)
 	{
@@ -52,10 +52,10 @@ class TodoController extends BaseController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified todo from the database.
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @return Response JSON
 	 */
 	public function destroy($id)
 	{

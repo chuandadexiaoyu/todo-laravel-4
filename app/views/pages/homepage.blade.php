@@ -47,6 +47,7 @@
 						<a href="#" onclick="createTodo()"><span data-icon="&#xe041;"></span></a>
 					</span>
 				</h2>
+
 				<ul id="todo-list">
 
 					<li data-todo-id="1">
