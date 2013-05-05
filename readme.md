@@ -1,17 +1,18 @@
 ## Todo List | Demo for L4 usage
 
+### Install
 
+git clone -b develop git://github.com/Shhu/todo-laravel-4.git myapp
+cd myapp
+git remote rename origin upstream
 
-## Laravel 4.x
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
 
-### A Framework For Web Artisans
+php artisan migrate
+php artisan db:seed
 
-[Official Documentation](http://four.laravel.com) (Under Active Development)
+### Login
+Default username is "laravel"
+Default password is "test"
 
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

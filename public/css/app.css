@@ -6,7 +6,7 @@
 ul {margin: 0;padding: 0;}
 
 html {padding: 0;margin: 0;height: 100%;width: 100%;font-size: 16px;font-family: 'Open Sans',sans-serif;color: #ccc;}
-body {padding: 0;margin: 0;height: 100%;background: url('/img/background/bg.jpg') center center no-repeat fixed; }
+body {padding: 0;margin: 0;height: 100%;background: url('/img/background/bg2.png') center center no-repeat fixed; }
 
 input {background: #383838;color: #ADADAD;border: 1px solid #808080;margin-bottom: .5em;padding: .5em;width: 100%;border-radius: .6em;font-size: inherit;}
 
@@ -19,7 +19,7 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 #login .title {color: #B66868;font-size: 1.5em;margin-bottom: .5em;}
 
 #wrapper {overflow: hidden;min-height: 100%;}
-.col {width: 28em;padding-bottom: 10000px;margin-bottom: -10000px;background: rgba(73, 73, 73, .6);}
+.col {width: 28em;padding-bottom: 10000px;margin-bottom: -10000px;background: rgba(31, 31, 31, 0.8);}
 /* Logout, prefs, etc */
 .col .head {background: rgba(133, 199, 236, .2);width: 100%;padding: 1em;color: #DDEAEE;}
 .col .head .commands {font-size: 1.4em;margin-top: -.2em;}
@@ -36,7 +36,7 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 
 /* To-do list */
 #todo-list {min-height: 100%;}
-#todo-list li {padding: .5em 1em;background: rgba(34, 34, 34, .2);display: block;color: #7E7E7E;border-bottom: 1px solid #535353;box-shadow: inset 1px 2px 6px #000;}
+#todo-list li {padding: .5em 1em;background: rgba(34, 34, 34, .2);display: block;border-bottom: 1px solid #535353;box-shadow: inset 1px 2px 6px #000;}
 #todo-list li:nth-child(odd) {background: rgba(9, 9, 9, .2);}
 #todo-list li:hover {color: #C4C4C4;background: #2B2020;}
 

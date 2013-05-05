@@ -78,3 +78,17 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| AJAX restriction filter
+|--------------------------------------------------------------------------
+|
+| Access is only allowed from AJAX request
+|
+*/
+
+Route::filter('ajax', function()
+{
+	if (! Request::ajax()) App::abort(404);
+});

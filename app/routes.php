@@ -7,7 +7,8 @@ Route::get('/', ['before' => 'auth', function()
 }]);
 
 
-Route::resource('todo', 'TodoController');
+Route::resource('todo', 'TodoController', ['except' => ['show', 'store', 'edit']]);
+
 
 /* Login/logout Stuff */
 Route::get('login', ['as' => 'login', function(){

@@ -44,30 +44,17 @@
 					To-do
 					<span class="commands">
 						<a href="#" data-delete-show><span data-icon="&#xe021;"></span></a>
-						<a href="#"><span data-icon="&#xe041;"></span></a>
+						<a href="#" onclick="createTodo()"><span data-icon="&#xe041;"></span></a>
 					</span>
 				</h2>
 				<ul id="todo-list">
+
 					<li data-todo-id="1">
 						<a href="#" class="delete"></a>
 						<span class="checkbox"></span>
 						<div contenteditable="true">Put the trash out</div>
 					</li>
-					<li data-todo-id="2">
-						<a href="#" class="delete"></a>
-						<span class="checkbox"></span>
-						<div contenteditable="true">Go out and buy pizza & beer</div>
-					</li>
-					<li data-todo-id="3">
-						<a href="#" class="delete"></a>
-						<span class="checkbox checked"></span>
-						<div contenteditable="true">Take coffee</div>
-					</li>
-					<li data-todo-id="4">
-						<a href="#" class="delete"></a>
-						<span class="checkbox"></span>
-						<div contenteditable="true">Do a barel roll</div>
-					</li>
+
 				</ul>
 			</div>
 		</div>

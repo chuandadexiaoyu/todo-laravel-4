@@ -1,57 +1,34 @@
 <?php
 
-class TodoController extends \BaseController {
+class TodoController extends BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+	public function __construct()
 	{
-		//
+		// Restrict all methods to ajax request only
+		$this->beforeFilter('ajax');
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Return a JSON with all todos for the current user
+	 *
+	 * @return Response JSON
+	 */
+	public function index()
+	{
+		return Todo::whereUserId(Auth::user()->id)->get()->toJson();
+	}
+
+	/**
+	 * Create a new empty todo
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+		$todo = new Todo;
+		$todo->user_id = Auth::user()->id;
+		$todo->save();
+		return Response::json(['success' => 'create', 'id' => $todo->id]);
 	}
 
 	/**
@@ -62,7 +39,16 @@ class TodoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		return Response::json(['success' => 'update', 'id' => $id]);
+		$todo = Todo::whereUserId(Auth::user()->id)->whereId($id)->first();
+		if (! $todo)
+		{
+			return Response::json(['error' => 'Todo Not Found']);
+		}
+		if (Input::has('title')) $todo->title = Input::get('title');
+		if (Input::has('checked')) $todo->checked = Input::get('checked');
+		$todo->save();
+
+		return Response::json(['success' => 'update', 'id' => $todo->id, 'title' => $todo->title, 'checked' => $todo->checked]);
 	}
 
 	/**
@@ -73,8 +59,8 @@ class TodoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-
-		return Response::json(['success' => 'delete', 'id' => $id, 'checked' => Input::get('checked')]);
+		Todo::destroy($id);
+		return Response::json(['success' => 'delete', 'id' => $id]);
 	}
 
 }

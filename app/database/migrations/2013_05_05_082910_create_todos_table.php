@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreateTodosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,13 +11,14 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table)
+		Schema::create('todos', function($table)
 		{
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->string('username', 100);
-			$table->string('password');
-			$table->string('email');
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+			$table->text('title');
+			$table->boolean('checked');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +30,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('todos');
 	}
 
 }
