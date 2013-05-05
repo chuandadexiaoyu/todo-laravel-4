@@ -7,11 +7,18 @@
 			<div class="head">
 				Welcome {{ucfirst(Auth::user()->username)}}
 				<span class="commands">
+					<a data-section-toggle="todo" href="#" class="current"><span data-icon="&#xe039;"></span></a>
 					<a data-section-toggle="help" href="#"><span data-icon="&#xe007;"></span></a>
 					<a data-section-toggle="settings" href="#"><span data-icon="&#xe01c;"></span></a>
 					<a href="{{URL::route('logout')}}" class="logout"><span data-icon="&#xe01e;"></span></a>
 				</span>
 			</div>
+
+			@if(Session::has('error'))
+				<div class="alert error">{{Session::get('error')}} <a href="#" class="close">x</a></div>
+			@elseif(Session::has('success'))
+				<div class="alert success">{{Session::get('success')}} <a href="#" class="close">x</a></div>
+			@endif
 
 			<div data-section="settings">
 				<h2>
@@ -21,8 +28,13 @@
 					</span>
 				</h2>
 				<div class="panel">
-					<p>Wallpaper demo file upload</p>
-					<button type="button" data-section-toggle="settings">Close</button>
+					{{Form::open(array('action' => 'SettingController@postAddBackground', 'files' => true))}}
+						{{Form::file('background')}}
+
+						<button type="submit">Add this background</button>
+						<button type="button" data-section-toggle="settings">Close</button>
+					{{Form::close()}}
+
 				</div>
 			</div>
 
@@ -58,6 +70,11 @@
 
 				</ul>
 			</div>
+
+			<p style="text-align:center">
+				Exec time : {{round( (microtime(true) - LARAVEL_START) * 1000, 2)}}ms |
+				Memory use : {{round(memory_get_usage() / 1024 / 1024 ,2)}} [{{round(memory_get_peak_usage() / 1024 / 1024 ,2)}}]
+			</p>
 		</div>
 	</div>
 

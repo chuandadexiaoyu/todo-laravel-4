@@ -33,13 +33,19 @@ $(document).ready(function(){
 
 	loadTodos();
 
+	$('.alert .close').click(function(){$(this).parent().slideUp(200)})
+
 	$('[data-delete-show]').click(function(e){
 		$('#todo-list .delete').fadeToggle(300);
 	});
 
-	$('[data-section=todo]').fadeIn(1000);
+	$('[data-section='+$('[data-section-toggle].current').attr('data-section-toggle')+']').fadeIn(1000);
 	$('[data-section-toggle]').click(function(e){
-		$('[data-section='+$(this).attr('data-section-toggle')+']').slideToggle(200);
+		//if(this).is('.current') return false;
+		$('[data-section-toggle]').removeClass('current')
+		$(this).addClass('current');
+		$('[data-section]').slideUp(200);
+		$('[data-section='+$(this).attr('data-section-toggle')+']').stop(true,false).slideToggle(200);
 	});
 
 

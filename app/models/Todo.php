@@ -14,7 +14,7 @@ class Todo extends Eloquent {
 	 */
 	public function getTitleAttribute($value)
     {
-        return e($value);
+        return nl2br(e(Tools::br2nl($value)));
     }
 
     /**

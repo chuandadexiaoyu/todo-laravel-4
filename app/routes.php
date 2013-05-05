@@ -1,4 +1,9 @@
 <?php
+/**
+ * TIPS
+ * You see the complete list of your route with : php artisan routes
+ */
+
 
 /**
  * Homepage, contain all our todo interface, require to be logged for access
@@ -9,10 +14,16 @@ Route::get('/', ['before' => 'auth', function()
 }]);
 
 /**
- * Resource controller, will handle all change to our todo-list via ajax
+ * Resource Todo controller, will handle all change to our todo-list via ajax
  * this controller only accept AJAX request cf: $this->beforeFilter('ajax'); in __construct
  */
 Route::resource('todo', 'TodoController', ['except' => ['show', 'store', 'edit']]);
+
+/**
+ * RestFull Setting controller
+ * Auto detect all methods
+ */
+Route::controller('settings', 'SettingController');
 
 
 // Login form
