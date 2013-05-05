@@ -16,14 +16,22 @@ Route::get('/', ['before' => 'auth', function()
 /**
  * Resource Todo controller, will handle all change to our todo-list via ajax
  * this controller only accept AJAX request cf: $this->beforeFilter('ajax'); in __construct
+ * You can set the filter here too, take a look below to the 'background-loader' route
  */
 Route::resource('todo', 'TodoController', ['except' => ['show', 'store', 'edit']]);
+Route::resource('players', 'PlayerController');
 
 /**
  * RestFull Setting controller
  * Auto detect all methods
  */
 Route::controller('settings', 'SettingController');
+
+/**
+ * Create a GET route for the ajax background gallery loader
+ * Add filter to restrict the access to ajax request only
+ */
+Route::get('background-loader', 'SettingController@backgroundList')->before('ajax');
 
 
 // Login form

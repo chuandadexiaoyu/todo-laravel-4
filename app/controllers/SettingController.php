@@ -2,6 +2,35 @@
 
 class SettingController extends BaseController {
 
+	/**
+	 * backgroundList
+	 * A method without post|get prefix will not be referenced by Route::controller()
+	 * You must declare it manually
+	 * @return json returns a json with all background filename
+	 */
+	public function backgroundList()
+	{
+		$files = [];
+		foreach (glob(public_path().'/img/background/*') as $filename) {
+		    $files[] =  basename($filename);
+		}
+		return Response::json($files);
+	}
+
+	/**
+	 * Change the background image
+	 */
+	public function setBackground()
+	{
+		// TODO
+	}
+
+	/**
+	 * Background uploader
+	 * Valid if the uploaded file is an image
+	 * Check if the filename is already used
+	 * Save the file in public/img/background/
+	 */
 	public function postAddBackground()
 	{
 		$validator = Validator::make(Input::file(), ['background' => 'required|image']);

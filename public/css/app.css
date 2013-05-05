@@ -25,7 +25,8 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 #login .title {color: #B66868;font-size: 1.5em;margin-bottom: .5em;}
 
 #wrapper {overflow: hidden;min-height: 100%;}
-.col {width: 28em;padding-bottom: 10000px;margin-bottom: -10000px;background: rgba(31, 31, 31, 0.8);}
+.col {width: 28em;padding-bottom: 10000px;margin-bottom: -10000px;margin-left: 2em;background: rgba(31, 31, 31, 0.8);border: 0.5em solid rgba(255, 255, 255, 0.2);border-top: none;}
+
 /* Logout, prefs, etc */
 .col .head {background: rgba(133, 199, 236, .2);width: 100%;padding: 1em;color: #DDEAEE;}
 .col .head .commands {font-size: 1.4em;margin-top: -.2em;}
@@ -33,9 +34,9 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 .col .head .commands a:hover, .col .head .commands a.current {color: #59C7D1;}
 .col .head .commands .logout:hover {color:#E77F7F;}
 
-.col .panel {padding: .5em 1em;background: rgba(0, 0, 0, .5);}
-.col .panel button {cursor:pointer;background: rgba(133, 199, 236, .2);color: #B6D8DF;font-size: 1em;border: 3px solid #467480;padding: .5em 2em;}
-.col .panel button:hover {background: #91C98C;border-color: #9FEB99;color: #156818;}
+.col .panel {padding: .5em 1em;}
+.col .panel button {cursor: pointer;text-align: left;background: rgba(133, 199, 236, .2);color: #B6D8DF;font-size: 1em;border: none;border-left: .5em solid #467480;padding: .5em 1em .5em .5em;width: 45%;}
+.col .panel button:hover {background: rgba(37, 100, 32, 0.4);border-color: #44A33D;color: #A7CFA8;}
 
 [data-section] {display: none}
 
@@ -46,14 +47,21 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 #todo-list li:nth-child(odd) {background: rgba(9, 9, 9, .4);}
 #todo-list li:hover {color: #C4C4C4;background: #2B2020;}
 
-#todo-list div {transition: 0.5s;-webkit-transition: 0.5s;}
+#todo-list div {transition: 0.2s;-webkit-transition: 0.2s;}
 #todo-list div:focus {outline:none;}
+#todo-list.showDelete div {display: block;margin-left: 2em}
 
 #todo-list .delete {display: none;float: left;margin-right: 1em;text-decoration: none;color:#742A2A;}
 #todo-list .delete:hover {color: #D85E5E}
 #todo-list .delete:before {font-family: 'icomoon';content: '';}
+#todo-list.showDelete .delete {display: block;}
 
 #todo-list .checkbox {float: right;cursor: pointer;margin-top: .1em;}
 #todo-list .checkbox:hover {color:#8ABB7D;}
 #todo-list .checkbox:before {font-family: 'icomoon';content: '';}
 #todo-list .checkbox.checked:before {content: '';}
+
+/* background-gallery */
+#background-gallery img {width: 45%;margin: 1em 0;border: 1px solid #8D8D8D;padding: .2em;transition: 1s;-webkit-transition: 1s;}
+#background-gallery img:hover {border-color: #4777AA;background-color: #8D8D8D;}
+#background-gallery a:nth-child(even) {margin-left: 10%;}

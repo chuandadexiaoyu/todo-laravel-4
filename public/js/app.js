@@ -29,23 +29,57 @@ function createTodo()
 		});
 }
 
+/**
+ * Background gallery loader
+ */
+function loadBackgrounds()
+{
+	$.getJSON('background-loader', function ( data ) {
+			if (data)
+			{
+				$('#background-gallery').html('');
+				$.each(data, function(key, filename) {
+					$('#background-gallery').append('<a href="#"><img src="/img/background/'+filename+'"></a>');
+				});
+			}
+			console.log(data);
+		});
+}
+
+
 $(document).ready(function(){
 
 	loadTodos();
+	loadBackgrounds();
 
 	$('.alert .close').click(function(){$(this).parent().slideUp(200)})
 
-	$('[data-delete-show]').click(function(e){
-		$('#todo-list .delete').fadeToggle(300);
+	/**
+	 * Background switcher
+	 */
+	$('#background-gallery').on('click', 'a', function(e){
+		e.preventDefault();
+		$('body').css('background-image', 'url("'+$(this).find('img').attr('src')+'")');
+		// TODO : save in database
 	});
 
+	/**
+	 * Delete display switcher
+	 */
+	$('[data-delete-show]').click(function(e){
+		$('#todo-list').toggleClass('showDelete');
+	});
+
+	/**
+	 * Panel switcher
+	 */
 	$('[data-section='+$('[data-section-toggle].current').attr('data-section-toggle')+']').fadeIn(1000);
 	$('[data-section-toggle]').click(function(e){
-		//if(this).is('.current') return false;
+		if($(this).is('.current')) return false;
 		$('[data-section-toggle]').removeClass('current')
 		$(this).addClass('current');
 		$('[data-section]').slideUp(200);
-		$('[data-section='+$(this).attr('data-section-toggle')+']').stop(true,false).slideToggle(200);
+		$('[data-section='+$(this).attr('data-section-toggle')+']').stop(true,false).slideDown(200);
 	});
 
 
