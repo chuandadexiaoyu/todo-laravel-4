@@ -23,7 +23,7 @@
 			{{-- This is blade's one line comment, its like <?php // foo ?> and wont appear in html. Dont forget to close it ! --}}
 			{{-- Load settings section in views/pages/partials/ --}}
 			<div data-section="settings">
-				@include('pages.partials.settings')
+				{{-- Will be loaded on demand via Ajax --}}
 			</div>
 
 			<div data-section="help">

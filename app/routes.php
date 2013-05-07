@@ -22,13 +22,12 @@ Route::resource('todo', 'TodoController', ['except' => ['show', 'store', 'edit']
 /**
  * Create a route for saving wallpaper change
  * Method 'wallpaper' isnt a basic 'resource' method so we have to define it manually
- * Our wallpaper are saved with Str::slug('filename'), we can send the filename via get
  */
-Route::get('change-wallpaper/{filename}', 'UserController@wallpaper')->before('ajax');
+Route::post('change-wallpaper', 'SettingController@setBackground')->before('ajax');
 
 /**
  * RestFull Setting controller
- * Auto detect all methods
+ * Auto detect all methods with prefix (get|post)
  */
 Route::controller('settings', 'SettingController');
 
@@ -36,7 +35,7 @@ Route::controller('settings', 'SettingController');
  * Create a GET route for the ajax background gallery loader
  * Add filter to restrict the access to ajax request only
  */
-Route::get('background-loader', 'SettingController@backgroundList')->before('ajax');
+Route::get('settings-loader', 'SettingController@index')->before('ajax');
 
 
 // Login form

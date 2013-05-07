@@ -30,19 +30,15 @@ function createTodo()
 }
 
 /**
- * Background gallery loader
+ * Settings loader
  */
-function loadBackgrounds()
+function loadSettings()
 {
-	$.getJSON('background-loader', function ( data ) {
+	$.get('settings-loader', function ( data ) {
 			if (data)
 			{
-				$('#background-gallery').html('');
-				$.each(data, function(key, filename) {
-					$('#background-gallery').append('<a href="#" data-filename="'+filename+'"><img src="/img/background/'+filename+'"></a>');
-				});
+				$('[data-section=settings]').html(data);
 			}
-			console.log(data);
 		});
 }
 
@@ -50,17 +46,27 @@ function loadBackgrounds()
 $(document).ready(function(){
 
 	loadTodos();
-	loadBackgrounds();
 
-	$('.alert .close').click(function(){$(this).parent().slideUp(200)})
+	$('.alert .close').click(function(){$(this).parent().slideUp(200)});
+
+	/**
+	 * Settings on demand
+	 */
+	$('[data-section-toggle=settings]').click(function(e){
+		if ($('[data-section=settings]').children().length < 1)
+		{
+			// Load settings only once
+			loadSettings();
+		}
+	});
 
 	/**
 	 * Background switcher
 	 */
-	$('#background-gallery').on('click', 'a', function(e){
+	$('.col').on('click', '#background-gallery a', function(e){
 		e.preventDefault();
 		$('body').css('background-image', 'url("'+$(this).find('img').attr('src')+'")');
-		$.get('/change-wallpaper/'+$(this).attr('data-filename'), function ( data ) {
+		$.post('/change-wallpaper', {filename : $(this).attr('data-filename')}, function ( data ) {
 			if (data.success)
 			{
 				// do a barrel roll

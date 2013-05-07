@@ -12,6 +12,8 @@
 	{{Form::close()}}
 
 	<div id="background-gallery">
-		<!-- Ajax loaded background -->
+		@foreach ($wallpapers as $wallpaper)
+			<a href="#" data-filename="{{$wallpaper}}"><img src="/img/{{Auth::user()->id}}/background/{{$wallpaper}}"></a>
+		@endforeach
 	</div>
 </div>

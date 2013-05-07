@@ -64,4 +64,4 @@ h2 {padding: .5em;color: #ADADAD;font-variant: small-caps;font-weight: normal;ma
 /* background-gallery */
 #background-gallery img {width: 45%;margin: 1em 0;border: 1px solid #8D8D8D;padding: .2em;transition: 1s;-webkit-transition: 1s;}
 #background-gallery img:hover {border-color: #4777AA;background-color: #4777AA;}
-#background-gallery a:nth-child(even) {margin-left: 10%;}
+#background-gallery a:nth-child(even) {margin-left: 8%;}

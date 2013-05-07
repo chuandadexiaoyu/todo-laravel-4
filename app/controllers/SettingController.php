@@ -3,26 +3,31 @@
 class SettingController extends BaseController {
 
 	/**
-	 * backgroundList
 	 * A method without post|get prefix will not be referenced by Route::controller()
 	 * You must declare it manually
-	 * @return json returns a json with all background filename
+	 * @return string Return html of views/pages/partials/settings.blade.php
 	 */
-	public function backgroundList()
+	public function index()
 	{
-		$files = [];
-		foreach (glob(public_path().'/img/background/*') as $filename) {
-		    $files[] =  basename($filename);
+		$wallpapers = [];
+		foreach (glob(public_path().'/img/'.Auth::user()->id.'/background/*') as $filename) {
+		    $wallpapers[] =  basename($filename);
 		}
+		return View::make('pages.partials.settings', compact('wallpapers'));
 		return Response::json($files);
 	}
 
 	/**
-	 * Change the background image
+	 * Change the wallpaper for the current user
+	 * Can only be called via ajax (cf filter) so response will be json
 	 */
 	public function setBackground()
 	{
-		// TODO
+		$user = User::find(Auth::user()->id);
+		$user->wallpaper = e(Input::get('filename'));
+		$user->save();
+
+		return Response::json(['success' => 'wallpaper set']);
 	}
 
 	/**
@@ -40,14 +45,11 @@ class SettingController extends BaseController {
 			return Redirect::back();
 		}
 
-		$path = public_path().'/img/background/';
-		$filename = Str::slug(basename(Input::file('background')->getClientOriginalName(), Input::file('background')->getClientOriginalExtension()));
+		$path = public_path().'/img/'.Auth::user()->id.'/background/';
+		$filename = uniqid();
 		$extension = Input::file('background')->getClientOriginalExtension();
 
-		// If file already exist append an uniq id after the filename
-		if (File::isFile( $path.$filename.$extension) ) $filename = $filename.'-'.uniqid();
-
-		Input::file('background')->move($path, $filename.$extension);
+		Input::file('background')->move($path, $filename.'.'.$extension);
 		Session::flash('success','Background added.');
 		return Redirect::back();
 	}
