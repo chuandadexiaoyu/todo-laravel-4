@@ -19,7 +19,12 @@ Route::get('/', ['before' => 'auth', function()
  * You can set the filter here too, take a look below to the 'background-loader' route
  */
 Route::resource('todo', 'TodoController', ['except' => ['show', 'store', 'edit']]);
-Route::resource('players', 'PlayerController');
+/**
+ * Create a route for saving wallpaper change
+ * Method 'wallpaper' isnt a basic 'resource' method so we have to define it manually
+ * Our wallpaper are saved with Str::slug('filename'), we can send the filename via get
+ */
+Route::get('change-wallpaper/{filename}', 'UserController@wallpaper')->before('ajax');
 
 /**
  * RestFull Setting controller

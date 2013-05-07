@@ -22,11 +22,17 @@
 
 			{{-- This is blade's one line comment, its like <?php // foo ?> and wont appear in html. Dont forget to close it ! --}}
 			{{-- Load settings section in views/pages/partials/ --}}
-			@include('pages.partials.settings')
+			<div data-section="settings">
+				@include('pages.partials.settings')
+			</div>
 
-			@include('pages.partials.help')
+			<div data-section="help">
+				@include('pages.partials.help')
+			</div>
 
-			@include('pages.partials.todo')
+			<div data-section="todo">
+				@include('pages.partials.todo')
+			</div>
 
 			<p style="text-align:center">
 				Exec time : {{round( (microtime(true) - LARAVEL_START) * 1000, 2)}}ms |

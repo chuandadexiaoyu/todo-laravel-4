@@ -39,7 +39,7 @@ function loadBackgrounds()
 			{
 				$('#background-gallery').html('');
 				$.each(data, function(key, filename) {
-					$('#background-gallery').append('<a href="#"><img src="/img/background/'+filename+'"></a>');
+					$('#background-gallery').append('<a href="#" data-filename="'+filename+'"><img src="/img/background/'+filename+'"></a>');
 				});
 			}
 			console.log(data);
@@ -60,7 +60,13 @@ $(document).ready(function(){
 	$('#background-gallery').on('click', 'a', function(e){
 		e.preventDefault();
 		$('body').css('background-image', 'url("'+$(this).find('img').attr('src')+'")');
-		// TODO : save in database
+		$.get('/change-wallpaper/'+$(this).attr('data-filename'), function ( data ) {
+			if (data.success)
+			{
+				// do a barrel roll
+			}
+			console.log(data);
+		});
 	});
 
 	/**

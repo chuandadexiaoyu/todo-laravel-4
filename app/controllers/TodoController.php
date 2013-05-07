@@ -62,5 +62,4 @@ class TodoController extends BaseController {
 		Todo::destroy($id);
 		return Response::json(['success' => 'delete', 'id' => $id]);
 	}
-
 }
